@@ -1,6 +1,6 @@
 /*
  *
- * Courtney McGill
+ * author name(s), date, and other info here
  *
  */
 
@@ -16,11 +16,12 @@
 void process_data(FILE *input_file) {
 
 	struct rusage usage;
-	char filestream[2000000]; 
-	struct node *new_node = malloc(sizeof(struct node*)); // make a new node
-	new_node = new_node->next;
 
-	if (input_file == stdin){ // if the user did not pass in a file
+
+	char filestream[2000000]; 
+	struct node *new_node = malloc(sizeof(struct node*));
+	new_node = new_node->next;
+	if (input_file == stdin){
 //	   printf("Enter input: "); 
 	   while(fgets(filestream, 2000000,stdin)!= NULL){
 	  
@@ -31,7 +32,7 @@ void process_data(FILE *input_file) {
 		char *token = strtok(filestream, " \t\n"); 	
 		if (token != NULL){
 		int counter = 0;
-		for(int i=0; i<strlen(token); i++){ // check if each of the chars are valid in the first token
+		for(int i=0; i<strlen(token); i++){
 			if(i == 0 && (isdigit(token[i]) || token[i]=='-')){
 				counter++; 
 //				printf("incramented count \n");
@@ -40,10 +41,10 @@ void process_data(FILE *input_file) {
 				counter++; 
 			}
 		}
-		if (counter == strlen(token)){ // check if the first token is valid
-			int num = atoi(token); // change to an int
+		if (counter == strlen(token)){
+			int num = atoi(token);
 		//	printf("number:  %d\n" , num);
-			list_append(num, &new_node); // append it to the LL
+			list_append(num, &new_node); 
 			}
 		}	
 
@@ -51,7 +52,7 @@ void process_data(FILE *input_file) {
 			token = strtok(NULL, " \t\n"); 
 			if (token != NULL){
 			int counter= 0; 
-			for(int i=0; i<strlen(token); i++){ // check if all of the charachters are valid
+			for(int i=0; i<strlen(token); i++){
 				if(i == 0 && (isdigit(token[i]) || token[i]=='-')){
 					counter++; 
 				}	 
@@ -59,10 +60,10 @@ void process_data(FILE *input_file) {
 					counter++; 
 				}
 			}
-			if (counter == strlen(token)){ // check if the token is a valid token
-			int num = atoi(token); // change from a string to an int
+			if (counter == strlen(token)){
+			int num = atoi(token);
 	//		printf("token:  %c\n" , token);
-			list_append(num, &new_node); // append it to the LL
+			list_append(num, &new_node); 
 			}
 			}
 
@@ -71,10 +72,10 @@ void process_data(FILE *input_file) {
 	fflush(stdout);
 
 	}
-	else{ // if the user passed in a file
+	else{
+	        while(fgets(filestream, 2000000,input_file)!= NULL){
 
-	        while(fgets(filestream, 2000000,input_file)!= NULL){ // loop through file
-
+	  
 		int slen = strlen(filestream);
 //		printf("size of token %c\n", slen);
 		filestream[slen-1] = '\0';
